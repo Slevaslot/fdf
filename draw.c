@@ -24,20 +24,40 @@ void	algorithm_bresenham(int x, int y, int x1, int y1, fdf *data)
 	}
 }
 
-void	put_pxl(fdf *data)
+void	test_draw_without_3d(fdf *data, int x, int y)
 {
-	int	x;
-	int	y;
 
-	x = 50;
-	y = 200;
 	while(x < data->height)
 	{
 		y = 0;
 		while (y < data->width)
 		{
-			algorithm_bresenham(data->z[x][y], data->z[x][y], data->z[x][y], data->z[x][y] + 5, data);
+			if (data->z[x][y] == 10)
+				mlx_pixel_put(data->mlx_ptr, data->win_ptr,x, y, 0xFFFF00FF);
 			y++;
 		}
+		x++;
 	}
+}
+
+
+void	put_pxl(fdf *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while(x < data->height - 1)
+	{
+		y = 0;
+		while (y < data->width - 1)
+		{
+			algorithm_bresenham(data->z[x][y], data->z[x][y + 1], data->z[x + 1][y], data->z[x + 1][y + 1], data);
+			y++;
+		}
+		x++;
+	}
+	// test_draw_without_3d(data, x, y);
+
 }

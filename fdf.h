@@ -24,4 +24,5 @@ int		ft_countword(char const *s, char c);
 void	algorithm_bresenham(int x, int y, int x1, int y2, fdf *data);
 void	put_pxl(fdf *data);
 
+
 #endif
