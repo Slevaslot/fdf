@@ -1,10 +1,11 @@
 #include "fdf.h"
 
-// int deal_key(int key)
-// {
-// 	ft_printf("%d", key);
-// 	return (0);
-// }
+int move_key(int key, fdf *data)
+{
+	if (key == 97)
+        data->move = 0;
+	return (0);
+}
 
 // if (argc != 2)
 	// {
@@ -21,24 +22,11 @@ int main(int argc, char **argv)
     fdf *data = malloc(sizeof(fdf));
     if (!data)
         return (-1);
-
     data->height = 0;
     data->width = 0;
+    data->move = 1;
     data->z = NULL;
     read_file(argv[1], data);
-    // int h = 0;
-    // int w = 0;
-    // while(h < data->height)
-    // {
-    //     w = 0;
-    //     while (data->z[h][w])
-    //     {
-    //         printf("%3d", data->z[h][w]);
-    //         w++;
-    //     }
-    //     h++;
-
-    // }
     data->mlx_ptr = mlx_init();
     printf("1wdawda\n");
     if (!data->mlx_ptr)
@@ -57,8 +45,14 @@ int main(int argc, char **argv)
         free(data);
         return (-1);
     }
-    printf("3wdawda\n");
 
+    sleep(5);
+    int i = -1;
+    while(data->mlx_img[++i])
+        mlx_destroy_image(data->mlx_ptr, data->mlx_img[i]);
+    data->move = 100;
+    put_pxl(data);
+    printf("3wdawda\n");
     mlx_loop(data->mlx_ptr);
 
     return (0);

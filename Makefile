@@ -27,7 +27,7 @@ CC 		= gcc
 all: 		${PROG}
 
 ${PROG}:	${OBJS}
-					make -C libft/
+					@make -C libft/
 					@$(CC) ${OBJS} ${LIBS} -o ${PROG}
 					@echo "fdf Compiled!\n"
 

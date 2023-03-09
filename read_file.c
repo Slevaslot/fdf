@@ -66,6 +66,7 @@ void	read_file(char *file_n, fdf *data)
 	data->height = get_height(file_n);
 	data->width = get_width(file_n);
 	data->z = (int **)malloc(sizeof(int *) *(data->height + 1));
+	data->mlx_img = malloc(sizeof(int) * data->height * data->width);
 
 	i = 0;
 	while(i <= data->height)
