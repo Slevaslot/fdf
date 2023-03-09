@@ -31,7 +31,7 @@ typedef struct Point2D
 void	read_file(char *file_n, fdf *data);
 int		wd_counter (char *str, char sep);
 int		ft_countword(char const *s, char c);
-void	algorithm_bresenham(int x, int y, int x1, int y2, fdf *data);
+void algorithm_bresenham(float x, float y, float x1, float y1, fdf *data);
 void	put_pxl(fdf *data);
 int iso_project_fory(int x, int y, int z);
 int iso_project_forx(int x, int y);

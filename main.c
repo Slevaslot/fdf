@@ -46,10 +46,10 @@ int main(int argc, char **argv)
         return (-1);
     }
 
-    sleep(5);
-    int i = -1;
-    while(data->mlx_img[++i])
-        mlx_destroy_image(data->mlx_ptr, data->mlx_img[i]);
+    // sleep(5);
+    // int i = -1;
+    // while(data->mlx_img[++i])
+    //     mlx_destroy_image(data->mlx_ptr, data->mlx_img[i]);
     data->move = 100;
     put_pxl(data);
     printf("3wdawda\n");
