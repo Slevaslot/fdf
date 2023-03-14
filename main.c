@@ -24,36 +24,27 @@ int main(int argc, char **argv)
         return (-1);
     data->height = 0;
     data->width = 0;
-    data->move = 1;
+    data->move = 150;
+    data->zoom = 20;
     data->z = NULL;
     read_file(argv[1], data);
     data->mlx_ptr = mlx_init();
-    printf("1wdawda\n");
-    if (!data->mlx_ptr)
-    {
-        free(data);
-        return (-1);
-    }
-    printf("2wdawda\n");
-    if (data->mlx_ptr == NULL)
-        return (0);
+    // if (!data->mlx_ptr)
+    // {
+    //     free(data);
+    //     return (-1);
+    // }
+    // if (data->mlx_ptr == NULL)
+    //     return (0);
     data->win_ptr = mlx_new_window(data->mlx_ptr, 500, 500, "FDF");
     put_pxl(data);
-    if (!data->win_ptr)
-    {
-        mlx_destroy_display(data->mlx_ptr);
-        free(data);
-        return (-1);
-    }
-
-    // sleep(5);
-    // int i = -1;
-    // while(data->mlx_img[++i])
-    //     mlx_destroy_image(data->mlx_ptr, data->mlx_img[i]);
-    data->move = 100;
-    put_pxl(data);
-    printf("3wdawda\n");
+    // printf("3wdawda\n");
+    // if (!data->win_ptr)
+    // {
+    //     mlx_destroy_display(data->mlx_ptr);
+    //     free(data);
+    //     return (-1);
+    // }
     mlx_loop(data->mlx_ptr);
-
     return (0);
 }

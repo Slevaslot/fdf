@@ -19,7 +19,7 @@ typedef struct fdf
 	int	*mlx_img;
 	int color;
 	int move;
-
+	int zoom;
 }   fdf;
 
 typedef struct Point2D
@@ -33,8 +33,12 @@ int		wd_counter (char *str, char sep);
 int		ft_countword(char const *s, char c);
 void algorithm_bresenham(float x, float y, float x1, float y1, fdf *data);
 void	put_pxl(fdf *data);
-int iso_project_fory(int x, int y, int z);
-int iso_project_forx(int x, int y);
+float iso_project_forx(float x, float y);
+float iso_project_fory(float x, float y, int z);
+void	projection_isometrique(float *x, float *y, int z);
+
+
+
 
 
 
