@@ -16,10 +16,11 @@ int get_height(char *file_n)
 	line = get_next_line(fd);
 	while(line)
 	{
-		//free(line);
+		free(line);
 		line = get_next_line(fd);
 		height++;
 	}
+	// free(line);
 	close(fd);
 	return (height);
 }
@@ -45,43 +46,42 @@ void	fullfill_matrix(int *z_line, char *line)
 	char **str;
 	int i;
 
-	i = 0;
+	i = -1;
 	str = ft_split(line, ' ');
 
-	while(str[i])
+	while(str[++i])
 	{
 		z_line[i] = ft_atoi(str[i]);
 		free(str[i]);
-		i++;
 	}
 	free(str);
 }
 
 void	read_file(char *file_n, fdf *data)
 {
-	int fd;
-	int i;
-	char    *line;
+	int		fd;
+	int		i;
+	char	*line;
 
 	data->height = get_height(file_n);
 	data->width = get_width(file_n);
-	data->z = (int **)malloc(sizeof(int *) *(data->height + 1));
-	data->mlx_img = malloc(sizeof(int) * data->height * data->width);
+	data->z = (int **)malloc(sizeof(int *) * (data->height));
+	data->mlx_img = malloc(sizeof(int) * (data->height * data->width));
 
-	i = 0;
-	while(i <= data->height)
-		data->z[i++] = (int *)malloc(sizeof(int) * (data->width + 1));
+	i = -1;
+	while(++i < data->height)
+		data->z[i] = (int *)malloc(sizeof(int) * (data->width));
 	fd = open(file_n, O_RDONLY);
 	line = get_next_line(fd);
-	i = 0;
+	i = -1;
 	while(line)
 	{
-		fullfill_matrix(data->z[i], line);
+		fullfill_matrix(data->z[++i], line);
 		free(line);
 		line = get_next_line(fd);
-		i++;
 	}
+	// free(line);
 	close(fd);
-	data->z[i] = NULL;
+	// data->z[i] = NULL;
 	//utiliser les donnees pour malloc les mettres dans un double tableau d'entier
 }

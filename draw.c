@@ -1,5 +1,4 @@
 #include "fdf.h"
-#define MAX1(a, b) (a > b ? a : b)
 
 int	max_one(int a, int b)
 {
@@ -24,25 +23,26 @@ void algorithm_bresenham(float x, float y, float x1, float y1, fdf *data)
 
 	z = data->z[(int)y][(int)x];
 	z1 = data->z[(int)y1][(int)x1];
-	(void)z1;
-	(void)z;
-	if (data->z[(int)y][(int)x] != 0)
+	// (void)z1;
+	// (void)z;
+	if (z != 0)
 		data->color = 0xe80c0c;
 	else
 		data->color = 0xffffff;
 
+	x *= data->zoom;
+	y *= data->zoom;
+	x1 *= data->zoom;
+	y1 *= data->zoom;
+
 	projection_isometrique(&x, &y, z);
 	projection_isometrique(&x1, &y1, z1);
 
-	x *= 10;
-	y *= 10;
-	x1 *= 10;
-	y1 *= 10;
 
-	// x += 150;
-	// y += 150;
-	// x1 += 150;
-	// y1 += 150;
+	x += 200;
+	y += 200;
+	x1 += 200;
+	y1 += 200;
 
 	x_step = x1 - x;
 	y_step = y1 - y;
