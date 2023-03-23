@@ -19,7 +19,7 @@ int		wd_counter (char *str, char sep)
 			y++;
 		}
 	}
-	return (y + 1);
+	return (y);
 }
 
 int		ft_countword(char const *s, char c)

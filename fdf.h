@@ -20,7 +20,7 @@ typedef struct fdf
 	int color;
 	int move;
 	int zoom;
-}   fdf;
+}   t_data;
 
 typedef struct Point2D
 {
@@ -28,11 +28,11 @@ typedef struct Point2D
     int y;
 } Point2D;
 
-void	read_file(char *file_n, fdf *data);
+void	read_file(char *file_n, t_data *data);
 int		wd_counter (char *str, char sep);
 int		ft_countword(char const *s, char c);
-void algorithm_bresenham(float x, float y, float x1, float y1, fdf *data);
-void	put_pxl(fdf *data);
+void algorithm_bresenham(float x, float y, float x1, float y1, t_data *data);
+void	put_pxl(t_data *data);
 float iso_project_forx(float x, float y);
 float iso_project_fory(float x, float y, int z);
 void	projection_isometrique(float *x, float *y, int z);

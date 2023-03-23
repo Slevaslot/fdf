@@ -1,9 +1,32 @@
 #include "fdf.h"
 
-int move_key(int key, fdf *data)
+int move_key(int key, t_data *data)
 {
 	if (key == 97)
         data->move = 0;
+	return (0);
+}
+
+void    final_free(t_data *data)
+{
+    int i = -1;
+    while(data->z[++i])
+        free(data->z[i]);
+    free(data->z);
+    free(data->mlx_img);
+    free(data->win_ptr);
+    free(data->mlx_ptr);
+}
+
+int del_key(int key, t_data *data)
+{
+	if (key == 65307)
+    {
+        free(data);
+        final_free(data);
+        mlx_destroy_display(data->mlx_ptr);
+        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+    }
 	return (0);
 }
 
@@ -19,8 +42,8 @@ int main(int argc, char **argv)
 {
     // (void)argv;
     (void)argc;
-    fdf *data;
-    data = malloc(sizeof(fdf) * 1);
+    t_data *data;
+    data = malloc(sizeof(t_data) * 1);
     if (!data)
         return (-1);
     data->height = 0;
@@ -28,7 +51,7 @@ int main(int argc, char **argv)
     data->move = 150;
     data->zoom = 20;
     // data = 0;
-    data->z = NULL;
+    // data->z = NULL;
     data->mlx_ptr = 0;
     read_file(argv[1], data);
     printf("%d", data->z[1][3]);
@@ -49,6 +72,7 @@ int main(int argc, char **argv)
         free(data);
         return (-1);
     }
+    mlx_key_hook(data->win_ptr,del_key, data);
     mlx_loop(data->mlx_ptr);
     return (0);
 }

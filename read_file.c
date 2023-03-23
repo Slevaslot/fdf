@@ -1,7 +1,3 @@
-	//get hauteur
-	//get largeur
-	//alocate memory of **int with hauteur and largeur
-	//read file and write number into **int with atoi
 
 #include "fdf.h"
 
@@ -57,7 +53,7 @@ void	fullfill_matrix(int *z_line, char *line)
 	free(str);
 }
 
-void	read_file(char *file_n, fdf *data)
+void	read_file(char *file_n, t_data *data)
 {
 	int		fd;
 	int		i;
@@ -65,12 +61,12 @@ void	read_file(char *file_n, fdf *data)
 
 	data->height = get_height(file_n);
 	data->width = get_width(file_n);
-	data->z = (int **)malloc(sizeof(int *) * (data->height));
-	data->mlx_img = malloc(sizeof(int) * (data->height * data->width));
+	data->z = malloc(sizeof(int *) * (data->height) + 1);
+	data->mlx_img = malloc(sizeof(int ) * (data->height * data->width) + 1);
 
 	i = -1;
 	while(++i < data->height)
-		data->z[i] = (int *)malloc(sizeof(int) * (data->width));
+		data->z[i] = (int *)malloc(sizeof(int) * (data->width) + 1);
 	fd = open(file_n, O_RDONLY);
 	line = get_next_line(fd);
 	i = -1;
@@ -80,7 +76,7 @@ void	read_file(char *file_n, fdf *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	// free(line);
+	free(line);
 	close(fd);
 	// data->z[i] = NULL;
 	//utiliser les donnees pour malloc les mettres dans un double tableau d'entier

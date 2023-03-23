@@ -44,8 +44,8 @@ void algorithm_bresenham(float x, float y, float x1, float y1, fdf *data)
 	x1 += 200;
 	y1 += 200;
 
-	x_step = x1 - x;
-	y_step = y1 - y;
+	x_step = (x1 - x);
+	y_step = (y1 - y);
 	// je viens recuperer le plus long chemin a faire (vers bas ou gauche droite)
 	max = max_one(x_step, y_step);
 	x_step /= max;
@@ -81,6 +81,7 @@ void	put_pxl(fdf *data)
 	int	y;
 
 	y = 0;
+	x = 0;
 	while(y < data->height)
 	{
 		x = 0;
