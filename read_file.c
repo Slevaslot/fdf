@@ -47,8 +47,8 @@ void	fullfill_matrix(int *z_line, char *line)
 
 	while(str[++i])
 	{
-		z_line[i] = ft_atoi(str[i]);
-		free(str[i]);
+		z_line[i] =
+		ft_atoi(str[i]);
 	}
 	free(str);
 }
@@ -62,10 +62,11 @@ void	read_file(char *file_n, t_data *data)
 	data->height = get_height(file_n);
 	data->width = get_width(file_n);
 	data->z = malloc(sizeof(int *) * (data->height) + 1);
+	data->mlx_img = malloc(sizeof(data->height * data->width) + 1);
 
 	i = -1;
 	while(++i < data->height)
-		data->z[i] = (int *)malloc(sizeof(int) * (data->width) + 500);
+		data->z[i] = (int *)malloc(sizeof(int) * get_width(file_n) + 1);
 	fd = open(file_n, O_RDONLY);
 	line = get_next_line(fd);
 	i = -1;

@@ -10,11 +10,11 @@ int move_key(int key, t_data *data)
 void    final_free(t_data *data)
 {
     int i = -1;
-    while(data->z[++i])
+    while(++i < data->height)
         free(data->z[i]);
     free(data->z);
     free(data->mlx_img);
-    free(data->win_ptr);
+    // free(data->win_ptr);
     free(data->mlx_ptr);
 }
 
@@ -23,9 +23,11 @@ int del_key(int key, t_data *data)
 	if (key == 65307)
     {
         // free(data);
-        // final_free(data);
+        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
         mlx_destroy_display(data->mlx_ptr);
-        // mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+        final_free(data);
+        exit(0);
+        // free(data->mlx_ptr);
     }
 	return (0);
 }
@@ -52,26 +54,24 @@ int main(int argc, char **argv)
     data->zoom = 20;
     // data = 0;
     // data->z = NULL;
-    data->mlx_ptr = 0;
     read_file(argv[1], data);
-    printf("%d", data->z[1][3]);
     data->mlx_ptr = mlx_init();
-    if (!data->mlx_ptr)
-    {
-        free(data);
-        return (-1);
-    }
+    // if (!data->mlx_ptr)
+    // {
+    //     free(data);
+    //     return (-1);
+    // }
     if (data->mlx_ptr == NULL)
         return (0);
     data->win_ptr = mlx_new_window(data->mlx_ptr, 1000, 1000, "FDF");
     put_pxl(data);
     // printf("3wdawda\n");
-    if (!data->win_ptr)
-    {
-        mlx_destroy_display(data->mlx_ptr);
-        free(data);
-        return (-1);
-    }
+    // if (!data->win_ptr)
+    // {
+    //     mlx_destroy_display(data->mlx_ptr);
+    //     free(data);
+    //     return (-1);
+    // }
     mlx_key_hook(data->win_ptr,del_key, data);
     mlx_loop(data->mlx_ptr);
     return (0);
