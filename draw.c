@@ -12,7 +12,7 @@ int	max_one(int a, int b)
 		return (b);
 }
 
-void algorithm_bresenham(float x, float y, float x1, float y1, fdf *data)
+void algorithm_bresenham(float x, float y, float x1, float y1, t_data *data)
 {
 
 	float x_step;
@@ -59,7 +59,7 @@ void algorithm_bresenham(float x, float y, float x1, float y1, fdf *data)
 	}
 }
 
-void	test_draw_without_3d(fdf *data, int x, int y)
+void	test_draw_without_3d(t_data *data, int x, int y)
 {
 
 	while(x < data->height)
@@ -75,7 +75,7 @@ void	test_draw_without_3d(fdf *data, int x, int y)
 	}
 }
 
-void	put_pxl(fdf *data)
+void	put_pxl(t_data *data)
 {
 	int	x;
 	int	y;
