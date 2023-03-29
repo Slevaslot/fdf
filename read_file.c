@@ -62,11 +62,10 @@ void	read_file(char *file_n, t_data *data)
 	data->height = get_height(file_n);
 	data->width = get_width(file_n);
 	data->z = malloc(sizeof(int *) * (data->height) + 1);
-	data->mlx_img = malloc(sizeof(int ) * (data->height * data->width) + 1);
 
 	i = -1;
 	while(++i < data->height)
-		data->z[i] = (int *)malloc(sizeof(int) * (data->width) + 1);
+		data->z[i] = (int *)malloc(sizeof(int) * (data->width) + 500);
 	fd = open(file_n, O_RDONLY);
 	line = get_next_line(fd);
 	i = -1;

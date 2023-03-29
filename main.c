@@ -22,10 +22,10 @@ int del_key(int key, t_data *data)
 {
 	if (key == 65307)
     {
-        free(data);
-        final_free(data);
+        // free(data);
+        // final_free(data);
         mlx_destroy_display(data->mlx_ptr);
-        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+        // mlx_destroy_window(data->mlx_ptr, data->win_ptr);
     }
 	return (0);
 }
