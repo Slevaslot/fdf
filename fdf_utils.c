@@ -1,10 +1,9 @@
 #include "fdf.h"
 
-int		wd_counter (char *str, char sep)
+int	wd_counter(char *str, char sep)
 {
 	int	i;
 	int	y;
-	//int	j;
 
 	i = 0;
 	y = 0;
@@ -14,7 +13,7 @@ int		wd_counter (char *str, char sep)
 			i++;
 		if (str[i])
 		{
-			while(str[i] && str[i++] != sep)
+			while (str[i] && str[i++] != sep)
 				;
 			y++;
 		}
@@ -22,9 +21,9 @@ int		wd_counter (char *str, char sep)
 	return (y);
 }
 
-int		ft_countword(char const *s, char c)
+int	ft_countword(char const *s, char c)
 {
-	int cpt;
+	int	cpt;
 
 	cpt = 0;
 	while (*s)
@@ -43,17 +42,20 @@ int		ft_countword(char const *s, char c)
 
 void	projection_isometrique(float *x, float *y, int z)
 {
-	// (void)z;
+	*x *= 20;
+	*y *= 20;
+	*x += 400;
+	*y += 100;
 	*x = (*x - *y) * cos(0.8);
 	*y = (*x + *y) * sin(0.8) - z;
 }
 
-float iso_project_forx(float x, float y)
+float	iso_project_forx(float x, float y)
 {
 	return ((x - y) * cos(0.8));
 }
 
-float iso_project_fory(float x, float y, int z)
+float	iso_project_fory(float x, float y, int z)
 {
 	return ((x + y) * sin(0.8) - z);
 }
